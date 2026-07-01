@@ -1,0 +1,193 @@
+/* ── Global ── */
+[data-testid="stAppViewContainer"] {
+    background: #0f1117;
+}
+
+[data-testid="stSidebar"] {
+    background: #161b27;
+    border-right: 1px solid #2a2f3e;
+}
+
+/* ── Header ── */
+.mammo-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 20px 0 10px 0;
+    border-bottom: 2px solid #1E88E5;
+    margin-bottom: 24px;
+}
+
+.mammo-header h1 {
+    font-size: 2.8rem;
+    font-weight: 800;
+    letter-spacing: -1px;
+    background: linear-gradient(135deg, #1E88E5, #42A5F5);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin: 0;
+}
+
+.mammo-subtitle {
+    color: #8892a4;
+    font-size: 0.95rem;
+    margin-top: 4px;
+    letter-spacing: 0.5px;
+}
+
+/* ── Metric Cards ── */
+.metric-card {
+    background: #1a2035;
+    border: 1px solid #2a3350;
+    border-radius: 12px;
+    padding: 20px 24px;
+    text-align: center;
+    transition: transform 0.2s, border-color 0.2s;
+}
+
+.metric-card:hover {
+    transform: translateY(-2px);
+    border-color: #1E88E5;
+}
+
+.metric-card .label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: #8892a4;
+    margin-bottom: 8px;
+}
+
+.metric-card .value {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #e8eaf0;
+}
+
+.metric-card .value.blue  { color: #42A5F5; }
+.metric-card .value.green { color: #66BB6A; }
+.metric-card .value.red   { color: #EF5350; }
+.metric-card .value.amber { color: #FFCA28; }
+
+/* ── Prediction Badge ── */
+.prediction-badge {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 16px;
+    padding: 28px 32px;
+    margin: 8px 0;
+}
+
+.prediction-badge.malignant {
+    background: linear-gradient(135deg, rgba(229,57,53,0.15), rgba(229,57,53,0.05));
+    border: 2px solid #E53935;
+}
+
+.prediction-badge.benign {
+    background: linear-gradient(135deg, rgba(67,160,71,0.15), rgba(67,160,71,0.05));
+    border: 2px solid #43A047;
+}
+
+.prediction-badge .diagnosis-label {
+    font-size: 1.9rem;
+    font-weight: 800;
+    letter-spacing: 3px;
+}
+
+.prediction-badge.malignant .diagnosis-label { color: #EF5350; }
+.prediction-badge.benign    .diagnosis-label { color: #66BB6A; }
+
+.prediction-badge .diagnosis-sub {
+    font-size: 0.8rem;
+    color: #8892a4;
+    margin-top: 6px;
+    letter-spacing: 1px;
+}
+
+/* ── Section Headers ── */
+.section-header {
+    font-size: 1.1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #c5cae9;
+    border-left: 4px solid #1E88E5;
+    padding-left: 12px;
+    margin: 24px 0 16px 0;
+}
+
+/* ── Disclaimer Banner ── */
+.disclaimer {
+    background: rgba(255, 193, 7, 0.08);
+    border: 1px solid rgba(255, 193, 7, 0.3);
+    border-radius: 8px;
+    padding: 12px 16px;
+    color: #b8a020;
+    font-size: 0.82rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+}
+
+/* ── About Tech Badges ── */
+.badge-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 16px 0;
+}
+
+.tech-badge {
+    background: #1E88E5;
+    color: white;
+    border-radius: 20px;
+    padding: 6px 16px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+/* ── Sidebar overrides ── */
+[data-testid="stSidebar"] .stSlider > div > div > div {
+    background: #1E88E5;
+}
+
+[data-testid="stSidebar"] label {
+    color: #c5cae9 !important;
+    font-size: 0.82rem;
+}
+
+[data-testid="stSidebar"] .stButton > button {
+    background: linear-gradient(135deg, #1E88E5, #1565C0);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    padding: 12px 0;
+    width: 100%;
+    transition: opacity 0.2s;
+}
+
+[data-testid="stSidebar"] .stButton > button:hover {
+    opacity: 0.88;
+}
+
+/* ── Tab overrides ── */
+[data-testid="stTabs"] button[role="tab"] {
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    color: #8892a4;
+}
+
+[data-testid="stTabs"] button[role="tab"][aria-selected="true"] {
+    color: #42A5F5;
+    border-bottom-color: #1E88E5;
+}
+
+/* ── Divider ── */
+hr {
+    border-color: #2a2f3e !important;
+}
