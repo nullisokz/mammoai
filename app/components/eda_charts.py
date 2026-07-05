@@ -41,7 +41,9 @@ def render_eda_tab():
     class_names = cfg.get("class_names", ["benign", "malignant"])
 
     has_data = DATA_ROOT.exists() and any(
-        (DATA_ROOT / s / "images").exists() for s in ["train", "valid", "test"]
+        (DATA_ROOT / s / folder).exists()
+        for s in ["train", "valid", "test"]
+        for folder in ["0", "1"]
     )
 
     # ── Row 1: Class distribution ─────────────────────────────────────────────

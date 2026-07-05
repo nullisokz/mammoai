@@ -1,0 +1,8 @@
+{
+  "img_size": 224,
+  "num_classes": 2,
+  "class_names": [
+    "benign",
+    "malignant"
+  ]
+}

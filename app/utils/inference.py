@@ -26,7 +26,10 @@ def load_app_config() -> dict:
 
 @st.cache_resource(show_spinner="Loading model…")
 def load_model():
-    import tensorflow as tf
+    from tensorflow import keras
+    from tensorflow.keras import layers
+    from tensorflow.keras.applications import EfficientNetB0
+    from tensorflow.keras.applications.efficientnet import preprocess_input
 
     model_path = MODELS_DIR / "model.keras"
     if not model_path.exists():
@@ -34,7 +37,26 @@ def load_model():
             f"Model not found at {model_path}. "
             "Run the Jupyter notebook to train and save the model."
         )
-    return tf.keras.models.load_model(str(model_path))
+
+    # Keras 3 cannot reliably deserialize the Lambda preprocessing layer's function
+    # from the saved config (it loses the module path). Rebuilding the architecture
+    # in code and loading only the weights sidesteps that entirely.
+    img_size = load_app_config()["img_size"]
+    base = EfficientNetB0(weights=None, include_top=False,
+                          input_shape=(img_size, img_size, 3))
+    inputs = keras.Input(shape=(img_size, img_size, 3), name="image_input")
+    x = layers.Lambda(preprocess_input, output_shape=lambda s: s, name="preprocess")(inputs)
+    x = base(x, training=False)
+    x = layers.GlobalAveragePooling2D(name="gap")(x)
+    x = layers.Dense(256, activation="relu", name="dense_256")(x)
+    x = layers.BatchNormalization(name="bn")(x)
+    x = layers.Dropout(0.5, name="drop_256")(x)
+    x = layers.Dense(128, activation="relu", name="dense_128")(x)
+    x = layers.Dropout(0.3, name="drop_128")(x)
+    outputs = layers.Dense(1, activation="sigmoid", name="output")(x)
+    model = keras.Model(inputs, outputs, name="MammoAI")
+    model.load_weights(str(model_path))
+    return model
 
 
 @st.cache_data(show_spinner=False)

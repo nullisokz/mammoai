@@ -1,0 +1,22 @@
+{
+  "class_names": [
+    "benign",
+    "malignant"
+  ],
+  "train": {
+    "benign": 1569,
+    "malignant": 803
+  },
+  "valid": {
+    "benign": 448,
+    "malignant": 227
+  },
+  "test": {
+    "benign": 208,
+    "malignant": 128
+  },
+  "all": {
+    "benign": 2225,
+    "malignant": 1158
+  }
+}
